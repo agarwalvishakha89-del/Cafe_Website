@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishakha Agarwal | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #e0e7ff;
+            --accent: #06b6d4;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            padding: 40px 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphism Navigation */
+        nav {
+            position: sticky;
+            top: 16px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 9999px;
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        /* Cards Baseline */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Header Hero */
+        header.hero {
+            text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            padding: 48px 32px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header.hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+        }
+
+        .profile-img-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .profile-img-wrap img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+            display: block;
+        }
+
+        .profile-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .tagline {
+            display: inline-block;
+            color: var(--primary);
+            background: var(--primary-light);
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            letter-spacing: 0.2px;
+        }
+
+        /* Headings */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        p {
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        /* Skills Badges */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Modern Table */
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: #ffffff;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11.5px;
+            letter-spacing: 0.8px;
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            color: #334155;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #fcfdfe;
+        }
+
+        .badge-score {
+            display: inline-block;
+            background-color: #ecfdf5;
+            color: #059669;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        /* Projects Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 13.5px;
+            color: #64748b;
+            margin-bottom: 14px;
+        }
+
+        .tech-pill {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--primary);
+            background: #ffffff;
+            border: 1px solid #c7d2fe;
+            padding: 3px 9px;
+            border-radius: 6px;
+        }
+
+        /* Achievements List */
+        .achievement-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14.5px;
+            color: #334155;
+        }
+
+        .achievement-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: #fef3c7;
+            color: #d97706;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-top: 1px;
+        }
+
+        /* Contact Details & Form */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        .contact-pill a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-main);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: inherit;
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+
+        button.btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 14.5px;
+            font-weight: 700;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+
+        button.btn-submit:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px 0 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sticky Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header id="home" class="card hero">
+        <div class="profile-img-wrap">
+            <img src="profile.jpg" alt="Vishakha Agarwal">
+        </div>
+        <h1>Vishakha Agarwal</h1>
+        <span class="tagline">B.Tech • Computer Science & Data Science</span>
+    </header>
+
+    <!-- About Me -->
+    <section id="about" class="card">
+        <h2 class="section-title">About Me</h2>
+        <p>
+            I’m Vishakha, a first-year B.Tech student specializing in Computer Science and Data Science. Right now, I’m building a strong foundation in core programming, data structures, and algorithms, while exploring how data-driven models can solve real-world problems. I'm actively working on hands-on technical projects and looking to connect with peers and mentors building in the AI and software engineering space.
+        </p>
+        <p style="margin-bottom: 0;">
+            <strong>Career Objective:</strong> To apply analytical problem solving and algorithmic fundamentals toward building robust software applications and data-centric solutions.
+        </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="card">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <span class="skill-tag">⚡ C++</span>
+            <span class="skill-tag">🐍 Python</span>
+            <span class="skill-tag">🌐 HTML5</span>
+            <span class="skill-tag">🎨 CSS3</span>
+            <span class="skill-tag">🧠 Data Structures & Algorithms</span>
+            <span class="skill-tag">💻 Object-Oriented Programming</span>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="card">
+        <h2 class="section-title">Academic Background</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course / Class</th>
+                        <th>Board / Institution</th>
+                        <th>Passing Year</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>B.Tech (CSE - Data Science)</strong></td>
+                        <td>Engineering College</td>
+                        <td>2026 - Present</td>
+                        <td><span class="badge-score">Pursuing</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Class 12th (Senior Secondary)</strong></td>
+                        <td>CBSE</td>
+                        <td>2026</td>
+                        <td><span class="badge-score">82%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Class 10th (Secondary)</strong></td>
+                        <td>CBSE</td>
+                        <td>2024</td>
+                        <td><span class="badge-score">93%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div>
+                    <h3>1. Automated Touchless Dispenser</h3>
+                    <p>Constructed an ultrasonic sensor-driven contactless liquid dispenser designed with microcontroller relay logic for clean, hygienic execution.</p>
+                </div>
+                <div>
+                    <span class="tech-pill">C++ • Microcontroller</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>2. Medical Image Stenosis Detector</h3>
+                    <p>Designed a prototype pipeline focusing on vascular edge enhancement to detect stenosis and arterial narrowings in scan datasets.</p>
+                </div>
+                <div>
+                    <span class="tech-pill">Python • Computer Vision</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>3. Personal Portfolio Website</h3>
+                    <p>Designed a clean, modern personal responsive website highlighting projects, qualifications, and direct communication channels.</p>
+                </div>
+                <div>
+                    <span class="tech-pill">HTML5 • Modern CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="card">
+        <h2 class="section-title">Achievements</h2>
+        <ul class="achievement-list">
+            <li class="achievement-item">
+                <span class="achievement-icon">★</span>
+                <span>Scored <strong>93%</strong> in Class 10th CBSE Board examinations.</span>
+            </li>
+            <li class="achievement-item">
+                <span class="achievement-icon">★</span>
+                <span>Completed foundational hands-on programming coursework across C++ and Python.</span>
+            </li>
+            <li class="achievement-item">
+                <span class="achievement-icon">★</span>
+                <span>Participated in competitive project hackathons and technology showcase events.</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Contact Me -->
+    <section id="contact" class="card">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-layout">
+            <div class="contact-details">
+                <div class="contact-pill">
+                    <span>📧</span>
+                    <a href="mailto:agarwalvishakha89@gmail.com">agarwalvishakha89@gmail.com</a>
+                </div>
+                <div class="contact-pill">
+                    <span>📞</span>
+                    <span>+91 8750239722</span>
+                </div>
+                <div class="contact-pill">
+                    <span>📍</span>
+                    <span>India</span>
+                </div>
+                <div class="contact-pill">
+                    <span>🔗</span>
+                    <span><a href="#">LinkedIn</a> &nbsp;|&nbsp; <a href="#">GitHub</a></span>
+                </div>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="e.g. Alex Sharma" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="3" placeholder="Write your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vishakha Agarwal. All rights reserved.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
